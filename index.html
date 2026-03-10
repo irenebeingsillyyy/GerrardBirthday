@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>sweet seventeen</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:
+radial-gradient(circle at 20% 30%,#1a3fb8,transparent),
+radial-gradient(circle at 80% 70%,#091c57,transparent),
+#020b2d;
+
+color:white;
+overflow-x:hidden;
+text-align:center;
+}
+
+/* floating stars */
+
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+opacity:.7;
+animation:twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle{
+0%,100%{opacity:.2;transform:scale(.8)}
+50%{opacity:1;transform:scale(1.4)}
+}
+
+/* opening */
+
+#opening{
+
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+gap:20px;
+}
+
+.envelope{
+
+font-size:90px;
+cursor:pointer;
+transition:.5s;
+filter:drop-shadow(0 0 10px rgba(255,255,255,.6));
+}
+
+.envelope:hover{
+
+transform:scale(1.2) rotate(5deg);
+}
+
+.open-text{
+
+font-size:18px;
+opacity:.8;
+}
+
+/* main */
+
+#main{
+
+display:none;
+padding:60px 20px;
+max-width:900px;
+margin:auto;
+animation:fade 1.2s ease;
+}
+
+@keyframes fade{
+
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1}
+}
+
+/* title */
+
+.title{
+
+font-family:'Playfair Display',serif;
+font-size:48px;
+margin-bottom:40px;
+letter-spacing:2px;
+}
+
+/* card container */
+
+.card{
+
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(14px);
+border-radius:25px;
+padding:35px;
+box-shadow:0 20px 60px rgba(0,0,0,.5);
+margin-bottom:50px;
+}
+
+/* gallery */
+
+.gallery{
+
+width:100%;
+max-width:400px;
+margin:auto;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 10px 40px rgba(0,0,0,.5);
+}
+
+.gallery img{
+
+width:100%;
+display:none;
+transition:opacity 1s;
+}
+
+.gallery img.active{
+
+display:block;
+}
+
+/* message */
+
+.message{
+
+max-width:650px;
+margin:40px auto;
+font-size:18px;
+line-height:1.9;
+opacity:.95;
+min-height:120px;
+}
+
+/* cake */
+
+.cake{
+
+position:relative;
+width:200px;
+margin:60px auto;
+}
+
+.layer{
+
+height:40px;
+border-radius:12px;
+}
+
+.layer1{background:#5fa8ff}
+.layer2{background:#4b8ae4;margin-top:6px}
+.layer3{background:#3b74d6;margin-top:6px}
+
+.icing{
+
+background:white;
+height:15px;
+border-radius:12px;
+margin-top:-10px;
+}
+
+/* candle */
+
+.candle{
+
+width:10px;
+height:45px;
+background:#ffd1dc;
+margin:auto;
+margin-top:-125px;
+position:relative;
+cursor:pointer;
+border-radius:3px;
+}
+
+.flame{
+
+width:14px;
+height:20px;
+background:radial-gradient(circle, #ffd54d, orange);
+border-radius:50%;
+position:absolute;
+top:-20px;
+left:-2px;
+animation:flicker .15s infinite;
+box-shadow:0 0 20px orange;
+}
+
+@keyframes flicker{
+
+0%{transform:scale(1)}
+50%{transform:scale(1.3)}
+100%{transform:scale(1)}
+}
+
+/* links */
+
+.links{
+
+display:flex;
+gap:18px;
+justify-content:center;
+flex-wrap:wrap;
+margin-top:30px;
+}
+
+.links a{
+
+text-decoration:none;
+padding:12px 26px;
+border-radius:30px;
+background:linear-gradient(45deg,#4da6ff,#7ab6ff);
+color:white;
+font-weight:500;
+transition:.35s;
+}
+
+.links a:hover{
+
+transform:translateY(-4px) scale(1.08);
+box-shadow:0 10px 20px rgba(0,0,0,.4);
+}
+
+/* confetti */
+
+.confetti{
+
+position:fixed;
+width:8px;
+height:8px;
+background:white;
+top:-10px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+
+to{
+transform:translateY(100vh) rotate(360deg);
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+<source src="fadeintoyou.mp3" type="audio/mpeg">
+</audio>
+
+<!-- stars -->
+
+<script>
+
+for(let i=0;i<140;i++){
+
+let star=document.createElement("div")
+star.className="star"
+
+star.style.left=Math.random()*100+"vw"
+star.style.top=Math.random()*100+"vh"
+star.style.animationDuration=2+Math.random()*3+"s"
+
+document.body.appendChild(star)
+
+}
+
+</script>
+
+<!-- opening -->
+
+<div id="opening">
+
+<div class="envelope" onclick="openSite()">💌</div>
+
+<div class="open-text">click to open your birthday surprise</div>
+
+</div>
+
+<!-- main -->
+
+<div id="main">
+
+<div class="title">happy sweet seventeen</div>
+
+<div class="card">
+
+<div class="gallery">
+
+<img src="WhatsApp Image 2026-03-10 at 7.18.44 PM.jpeg" class="active">
+<img src="WhatsApp Image 2026-03-10 at 7.18.44 PM.jpeg">
+<img src="WhatsApp Image 2026-03-10 at 7.18.44 PM.jpeg">
+
+</div>
+
+<div class="message" id="message"></div>
+
+</div>
+
+<div class="card">
+
+<h2>make a wish</h2>
+
+<div class="cake">
+
+<div class="layer layer1"></div>
+<div class="layer layer2"></div>
+<div class="layer layer3"></div>
+
+<div class="icing"></div>
+
+<div class="candle" onclick="blowCandle()">
+
+<div class="flame" id="flame"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="links">
+
+<a href="https://open.spotify.com/playlist/1z4jlCln4bGQBwjcwbgMZJ?si=04hC095ZSuWpcVgldLoT5Q">playlist</a>
+<a href="https://heyzine.com/flip-book/cd4ca56a86.html">confession</a>
+<a href="https://heyzine.com/flip-book/bf509c846a.html">birthday card</a>
+<a href="https://heyzine.com/flip-book/fbe40b2153.html">wish</a>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* open site */
+
+function openSite(){
+
+document.getElementById("opening").style.display="none"
+document.getElementById("main").style.display="block"
+
+document.getElementById("music").play()
+
+typeMessage()
+
+}
+
+/* slideshow */
+
+let slides=document.querySelectorAll(".gallery img")
+let i=0
+
+setInterval(()=>{
+
+slides[i].classList.remove("active")
+i=(i+1)%slides.length
+slides[i].classList.add("active")
+
+},3500)
+
+/* message */
+
+let text=`happy birthday.
+
+seventeen already.
+i made this little website just for you.
+
+i hope today feels special,
+and this year brings you happiness,
+beautiful memories,
+and dreams coming true.
+
+thank you for being someone so special.`
+
+let index=0
+
+function typeMessage(){
+
+let el=document.getElementById("message")
+
+let interval=setInterval(()=>{
+
+el.innerHTML+=text[index]
+
+index++
+
+if(index>=text.length){
+clearInterval(interval)
+}
+
+},40)
+
+}
+
+/* candle */
+
+function blowCandle(){
+
+let flame=document.getElementById("flame")
+flame.style.display="none"
+
+for(let i=0;i<90;i++){
+
+let c=document.createElement("div")
+c.className="confetti"
+
+c.style.left=Math.random()*100+"vw"
+c.style.animationDuration=2+Math.random()*3+"s"
+
+document.body.appendChild(c)
+
+}
+
+setTimeout(()=>{
+alert("make a wish ✨")
+},500)
+
+}
+
+</script>
+
+</body>
+</html>
